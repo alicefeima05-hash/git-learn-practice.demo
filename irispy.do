@@ -1,4 +1,5 @@
 use http://www.stata-press.com/data/r18/iris, clear
+use "/Users/bambi/Documents/GitHub/git-learn-practice.demo/Iris.csv"
 list
 save "/Users/bambi/Documents/GitHub/git-learn-practice.demo/Iris.csv"
 
@@ -6,3 +7,11 @@ save "/Users/bambi/Documents/GitHub/git-learn-practice.demo/Iris.csv"
 tab iris
 tab iris, nolabel
 Setosa ==1
+Keep if iris ==1
+save "/Users/bambi/Documents/GitHub/git-learn-practice.demo/Iris.csv"
+
+splitsample, generate(svar, replace) split(0.7 0.3) show rseed(16)
+
+frame put iris seplen sepwid petlen petwid if svar==1, into(training)
+frame put iris seplen sepwid petlen petwid if svar==2, into(test)
+frames dir
